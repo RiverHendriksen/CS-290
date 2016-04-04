@@ -1,0 +1,3 @@
+#this will ignore .DS_Store which Mac always pushes 
+
+*.DS_Store
