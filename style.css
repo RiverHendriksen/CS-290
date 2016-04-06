@@ -1,0 +1,54 @@
+<!DOCTYPE css>
+
+/*borders table*/
+table, th, td {
+	border: 1px solid black;
+}
+
+/*colors every other even child green*/
+tr:nth-child(even) {
+    background-color: green;
+}
+
+/*colors every other odd child teal*/
+tr:nth-child(odd) {
+    background-color: teal;
+}
+
+/*colors header and footer white by declaring tr id="headboy"*/
+#headboy{
+	background-color: white;
+}
+
+
+/* id selector */ 
+#first {
+	border: 1px solid black;
+	font-style: italic;
+}
+
+/* changes dt to be bold*/
+dt {
+	font-weight: bold;
+}
+
+/* I wanted to name this class fancyspook but no go apparently :-/ */
+.outer-content{
+	overflow:auto;
+	margin-top:20px;
+	width:75%;
+	height:100px;
+	background: pink;
+}
+
+/* This one would be called dirstyspook which is not a word I know */
+.inner-content{
+	position: relative;
+	background:blue;
+	width: 75%;
+	margin:auto;
+	margin-top: 20px;
+	line-height: 50px;
+	text-align: center;
+
+}
