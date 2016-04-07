@@ -1,4 +1,4 @@
-<!DOCTYPE css>
+
 
 /*borders table*/
 table, th, td {
@@ -52,3 +52,11 @@ dt {
 	text-align: center;
 
 }
+
+/* references:
+
+http://paranormalistics.blogspot.com/p/types-of-ghosts-and-spirits.html
+
+http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work
+
+http://stackoverflow.com/questions/16205907/css-vertical-align-property-doesnt-work */
