@@ -27,5 +27,3 @@ console.log(deepEqual(obj, {here: 1, object: 2}));
 console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 // → true
 
-//I wrote this code but also checked online to see if my code made sense and it was almost the exact same as this github: https://gist.github.com/SYFReed/ad936e1f87ad38440bd5
-//Please know I was not copying their results, but clearly we think in a similar manner!
