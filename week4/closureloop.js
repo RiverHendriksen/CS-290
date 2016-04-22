@@ -1,0 +1,23 @@
+//doesn't work if you are using node because alert is not defined, but will work within browsers or JS Fiddle
+function buildList(list) {
+  var result = [];
+  for (var i = 0; i < list.length; i++) {
+       var item = function (x) {
+              return 'item' + x;
+              
+       }(list[i]);
+      alert(item);
+}
+
+return result;
+}
+
+function testList() {
+    var fnlist = buildList([1,2,3]);
+// using j only to help prevent confusion - could use i
+    for (var j = 0; j < fnlist.length; j++) {
+        fnlist[j]();
+    }
+}
+ 
+testList();
