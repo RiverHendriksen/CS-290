@@ -12,7 +12,7 @@ function Automobile( year, make, model, type ){
         else{
             return console.log(year, make, model);
         }
-    
+    last
     }
 
 }
