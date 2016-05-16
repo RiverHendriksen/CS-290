@@ -11,7 +11,7 @@ app.get('/',function(req,res){
   res.render('home') 
 });
 
-app.get('/ggresult',function(req,res){
+app.get('/get-loopback-improved',function(req,res){
   //create an array
   var qParams = [];
   //iterate through the for loop and push to vals to the array at a single index
@@ -21,7 +21,7 @@ app.get('/ggresult',function(req,res){
   var context = {};
   //create a data list that is of the array
   context.dataList = qParams;
-  res.render('ggresult', context);
+  res.render('get-loopback-improved', context);
 });
 
 
