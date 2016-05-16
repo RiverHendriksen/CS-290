@@ -11,9 +11,19 @@ app.get('/',function(req,res){
   res.render('home.handlebars') //We can omit the .handlebars extension as we do below
 });
 
-app.get('/other-page',function(req,res){
-  res.render('other-page');
+app.get('/get-loopback-improved',function(req,res){
+  //create an array
+  var qParams = [];
+  //iterate through the for loop and push to vals to the array at a single index
+  for (var p in req.query){
+    qParams.push({'name':p,'value':req.query[p]})
+  }
+  var context = {};
+  //create a data list that is of the array
+  context.dataList = qParams;
+  res.render('get-loopback-improved', context);
 });
+
 
 /*app.use(function(req,res){
   res.status(404);
