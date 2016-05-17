@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="color.css">
-  <script src="test.js"></script>
+  <script src="anime.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -29,9 +29,9 @@
     <div class = "container">
       <h2>Result</h2>
       <ul>
-        <li><span>title:</span><span id="Ucity"></span></li>
-        <li><span>plots:</span><span id="humidity"></span></li>
-        <li><span>Temperature:</span><span id="tempbroture"></span></li>
+        <li><span>Pokemon ID:</span><span id="Pokid"></span></li>
+        <li><span>Pokemon name:</span><span id="Pname"></span></li>
+        <!--<li><span>Temperature:</span><span id="tempbroture"></span></li>-->
       </ul>
     </div>
 
