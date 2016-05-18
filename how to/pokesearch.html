@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <head>
+    <script>
+      document.addEventListener('DOMContentLoaded', bindButtons);
+
+      function poketastic(specificdog){
+        var req = new XMLHttpRequest();
+        var payload = {dawg:null};
+        payload.xd = document.getElementById(specificdog).value;
+        var lowpayload = payload.xd.toLowerCase();
+        console.log(payload.xd)
+        req.open('GET', 'http://pokeapi.co/api/v2/pokemon/' + lowpayload, true);
+        req.addEventListener('load',function(){
+        if(req.status >= 200 && req.status < 400){
+
+          console.log(JSON.parse(req.responseText));
+          var response = JSON.parse(req.responseText);
+          document.getElementById('pokeid').textContent = response.id;
+          document.getElementById('pokname').textContent = response.name;
+          document.getElementById('poke').src = response.sprites.front_default; 
+        } else {
+            console.log("Error in network request: " + request.statusText);
+            document.getElementById('pokeid').textContent = "EERROOORRRR";
+            document.getElementById('pokname').textContent = "YOU PUT IN THE WRONG NAME IT DON'T EXIST";
+            document.getElementById('poke').src = "error.jpg"; 
+          }});
+          req.send(null);
+          event.preventDefault();
+      }
+
+      function bindButtons(){
+        document.getElementById('Submit').addEventListener('click', function(event){
+
+          var ninedogs = document.getElementById('pikname').value;
+          if(ninedogs!= ""){
+            poketastic("pikname");
+          }
+          else {
+            document.getElementById('pokeid').textContent = "EERROOORRRR";
+            document.getElementById('pokname').textContent = "YOU PUT IN THE WRONG NAME IT DON'T EXIST";
+            document.getElementById('poke').src = "error.jpg"; 
+            return;
+          }
+        })
+         
+      }
+    </script>
+
+  <title>pokesearch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="color.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+
+  $(function(){
+    $("#header").load("header.php");
+    $("#foot").load("footer.html");
+  });
+  </script>
+  </head>
+  <body>
+    <form>
+      <div class = "container" id = "header"></div>
+
+      <div class = "container">
+        <h1> Search for that special pokemon by name </h1><hr>
+        <fieldset>
+          <label for="pikname">Pokemon name:</label>
+          <input type="text" name="pikname" id="pikname">
+          <input type="submit" id="Submit">
+        </fieldset>
+    </form>
+    </div>
+
+
+    <div class = "container">
+      <h2>Result</h2>
+      <ul>
+        <li><span>ID: </span><span id="pokeid"></span></li>
+        <li><span>NAME: </span><span id="pokname"></span></li>
+      </ul>
+      <img src="" id= "poke" height="100" width="100">
+    </div>
+
+    <div class="container"  id = "foot"></div>
+
+  </body>
+</html>

@@ -1,16 +1,16 @@
-//console.log(dawg);
+
 var req = new XMLHttpRequest();
-//var payload = {dawg:null};
-//payload.xd = document.getElementById(specificdog).value;
-//console.log(payload.xd)
-req.open('GET', 'http://hummingbird.me/api/v1/search/anime?query=["persona"]', true);
+
+req.open('GET', 'http://pokeapi.co/api/v2/pokemon/2/', true);
+req.setRequestHeader('Content-type', 'application/json');
 req.addEventListener('load',function(){
 if(req.status >= 200 && req.status < 400){
      console.log(JSON.parse(req.responseText));
      var response = JSON.parse(req.responseText);
-     document.getElementById('Ucity').textContent = response.slug;
-     document.getElementById('humidity').textContent = response.synposis;
-     document.getElementById('tempbroture').textContent = response.episode_length;
+     document.getElementById('pokeid').textContent = response.id;
+     document.getElementById('pokname').textContent = response.name;
+     document.getElementById('poke').src = response.sprites.front_default; 
+
 } else {
      console.log("Error in network request: " + request.statusText);
      }});

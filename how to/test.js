@@ -1,9 +1,14 @@
 // Create the XHR object.
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
+  
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
+  xhr.open(method, url, true);
+  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+  xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+  xhr.setRequestHeader('Content-type', 'application/json');
+
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
     xhr = new XDomainRequest();
@@ -23,7 +28,7 @@ function getTitle(text) {
 // Make the actual CORS request.
 function makeCorsRequest() {
   // All HTML5 Rocks properties support CORS.
-  var url = 'http://updates.html5rocks.com';
+  var url = 'http://hummingbird.me/api/v1/anime/10';
 
   var xhr = createCORSRequest('GET', url);
   if (!xhr) {
@@ -33,15 +38,15 @@ function makeCorsRequest() {
 
   // Response handlers.
   xhr.onload = function() {
-    var text = xhr.responseText;
-    var title = getTitle(text);
-    alert('Response from CORS request to ' + url + ': ' + title);
+    //var text = xhr.responseText;
+    //var title = getTitle(text);
+    //alert('Response from CORS request to ' + url + ': ' + title);
   };
 
   xhr.onerror = function() {
     alert('Woops, there was an error making the request.');
   };
-  Access-Control-Allow-Credentials: true
+
   xhr.send();
 }
 makeCorsRequest();

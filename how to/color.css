@@ -6,3 +6,6 @@ body {
 input{
     color: black;
 }
+p {
+	font-size: 16px;
+}
