@@ -1,3 +1,6 @@
 #this will ignore .DS_Store which Mac always pushes 
 *.Rhistory
 *.DS_Store
+*.png
+*.jpg
+*.gif
