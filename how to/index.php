@@ -24,7 +24,7 @@
     <div class = "container">
       <h1> SO YOU ARE READY TO ENTER THE POKEMON WORLD (in your website) </h1>
       <p> So you may be thinking, "I want to have a website that shows my favorite pokemon and their stats, but how do do that?" Well I am here to tell you, it's pretty easy, there is an API for that.
-      Now you can share your fave pokemon with the world without jsut sharing with your friends the url (how lame is that), let them know taste [in pokemon] is cool. We will be using Pokéapi API which is 
+      Now you can share your fave pokemon with the world without just sharing with your friends the url (how lame is that), let them know your taste [in pokemon] is cool. We will be using Pokéapi API which is 
       readily avaliable on github (see the link at the top labeled Pokéapi) to acess all the pokemon goodness. </p></br><hr>
 
       <h5> **PLEASE NOTE, IT MAY TAKE SOME TIME FOR THE EXAMPLE TO DISPLAY (the times to contact pokeapi seem to change randomly)**</h5> <hr></br>
@@ -32,8 +32,8 @@
       <h2> What should I expect to be able to do at the end of this how- to guide? </h2>
       <p> Simply put, you will be able to access the json files for all the different type of pokemon that you desire to share. I assume you know a little HTML/CSS and Javascript
       but you don't know anything about json, APIs, or using AJAX (if you know more that is great!).
-      I won't be covering formatting such as tables. 
-      or anything else than lists, while that stuff is cool and helpful for formatting your wide data list of pokemon it isn't necessarily what I am trying to do today. For an example
+      I won't be covering formatting such as tables 
+      or anything else than lists, while that stuff is cool and helpful for formatting your wide data list of pokemon, it isn't necessarily what I am trying to do today. For an example
       you can expect the data to look something like this: </p> 
     </div>
    

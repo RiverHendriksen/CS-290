@@ -7,10 +7,21 @@
  <h1> Welcome back big bro! just so you know we are saving your ip: <?php echo $_SERVER["REMOTE_ADDR"]; ?> </h1>
  <hr>
 
- <a href="index.php"><button type="button" class="btn btn-primary">Home</button></a>
-  <a href="FAQ.html"><button type="button" class="btn btn-primary">FAQ</button></a>
-  <a href="plans.html"><button type="button" class="btn btn-primary">Future development</button></a>
+ <div class="dropdown">  
+  <a href="index.php"><button type="button" class="btn btn-primary">Home</button></a>
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sections
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="api.php">api</a></li>
+    <li><a href="ajax.php">ajax</a></li>
+    <li><a href="json.php">Json</a></li>
+    <li><a href="searchharder.php">Creating a search</a></li>
+    <li><a href="errors.php">Checking for errors</a></li>
+
+  	</ul>
   <a href="pokesearch.html"><button type="button" class="btn btn-primary">Search that pokemon!</button></a>
-  <a href="login.php"><button type="button" class="btn btn-success">Github</button></a>     
+      <a href="http://pokeapi.co/docsv2/#info"><button type="button" class="btn btn-success">Pokéapi</button></a>
+  <a href="https://github.com/RiverHendriksen/CS-290/tree/master/how%20to"><button type="button" class="btn btn-success">Github</button></a>  
+  </div>  
 </br>
 </div>

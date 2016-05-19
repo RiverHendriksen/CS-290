@@ -33,32 +33,28 @@
   </script>
 </head>
 <body>
-    <div class = "container" id = "header"></div>
+  <div class = "container" id = "header"></div>
 
-
-
-    <div class = "container">
-
-    <div class="container">
-      <img src="" id= "poke" height="600" width="600" align = "right">
+  <div class="container">
+    <img src="" id= "poke" height="600" width="600" align = "right">
    
     <h1> So what exactly is an API and why would we use it? </h1> 
-    <p> This is a great question to ask, An API (Application Programming Interface) is a way for servers and computers to communicate with one and other. 
+    <p> This is a great question to ask!!! An API (Application Programming Interface) is a way for servers and computers to communicate with one and other. 
     For the example of what we are using for this guide - if we were using the Pokéapi to grab information without the existence of an API (ironic but let's continue)
     we would have to create code to manually search the webpage for the information we wanted (basically a web crawler). This is extremely inefficient and would cause a lack of a
     standard so everyone would have to create a new web crawler everytime they wanted any information from a website. Luckily there are API's which basically send a message 
-    to the website that holds the information and that website sends the information you requested back, usually json (great right?).</p><hr>
+    to the website that holds the information and that website sends the information you requested back, usually json (great right? Heck ya it is).</p><hr>
 
     <h1>How do we use an API? </h1>
     <p>For the sake of this how to guide we will not be using API Keys because they are not required by Pokéapi, however that is not always the case
     (it usually isn't the case). We won't be talking about keys but they are important to know if you want to use different API's, <a href="http://stackoverflow.com/questions/1453073/what-is-an-api-key">this link </a> from stack overflow can 
     help you to understand. We will be using AJAX requests to ask the Pokéapi for data that we want. AJAX is a way to request services from a website using 
-    javascript. We wont be getting into the nitty-gritty of how AJAX works but we will be using it. It is also important to note that all data received in the form of 
+    javascript. We wont be getting into the nitty-gritty of how AJAX works but we will be using it. It is also important to note that all data received is in the form of 
     Json. Json is just a way to format data, it is not a language on its own. Here is an example of Json data recieved from Pokéapi: </p></br>
     <img src="poke.png" height="500" width="700" >
   </br></br>
     <p> WOW! That's totally unreadable! And not only because I compressed a 1440p screen shot! that is because when you request a json file you are basically 
-      asking for a dumb for all that data. But hey that's what this how to guide is for! we are going to take that steaming pile of trash dump and make it into data that you can use!
+      asking for a dump of all that data. But hey that's what this how to guide is for! we are going to take that steaming pile of trash dump and make it into data that you can use!
       so let's get started by making an AJAX request!
     </br>
   </div>

@@ -20,7 +20,13 @@
           document.getElementById('pokeid').textContent = response.id;
           document.getElementById('pokname').textContent = response.name;
           document.getElementById('poke').src = response.sprites.front_default; 
-        } else {
+        } 
+        else if(req.status == 404){
+            document.getElementById('pokeid').textContent = "EERROOORRRR";
+            document.getElementById('pokname').textContent = "YOU PUT IN THE WRONG NAME IT DON'T EXIST";
+            document.getElementById('poke').src = "error.jpg"
+      }
+        else {
             console.log("Error in network request: " + request.statusText);
             document.getElementById('pokeid').textContent = "EERROOORRRR";
             document.getElementById('pokname').textContent = "YOU PUT IN THE WRONG NAME IT DON'T EXIST";

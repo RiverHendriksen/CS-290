@@ -9,3 +9,8 @@ input{
 p {
 	font-size: 16px;
 }
+
+.dropdown-menu {
+    left: 50% !important;
+    margin-left: -300px;
+}
