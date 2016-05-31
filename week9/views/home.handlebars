@@ -1,8 +1,187 @@
+<head>
+<script>
+
+function getRadioValue(theRadioGroup)
+{
+    var elements = document.getElementsByName(theRadioGroup);
+    for (var i = 0, l = elements.length; i < l; i++)
+    {
+        if (elements[i].checked)
+        {
+            return elements[i].value;
+        }
+    }
+}
+
+function add(data) {
+    var far = data.length-1;
+    var table = document.getElementById("tables");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    cell1.innerHTML = data[far].name;
+    cell2.innerHTML = data[far].reps;
+    cell3.innerHTML = data[far].weight;
+    cell4.innerHTML = data[far].date;
+    cell5.innerHTML = data[far].lbs;
+	
+    var btn = document.createElement('input');
+    btn.type = "button";
+    btn.className = "btn";
+    btn.value = "delete";
+    btn.onclick =function(){del('tables', this, data[far].id)};
+    cell6.appendChild(btn); 
+
+    var edit = document.createElement('input');
+    edit.type = "button";
+    edit.className = "edit";
+    edit.value = "edit";
+    edit.onclick =function(){};
+    cell7.appendChild(edit);  
+}
+
+    document.addEventListener('DOMContentLoaded', bindButtons);
+  
+      function bindButtons(){
+        document.getElementById('submit').addEventListener('click', function(event){
+
+	  console.log("dawg");
+	  var name = document.getElementById('name').value;
+	  var reps = document.getElementById('reps').value;
+          var weight = document.getElementById('weight').value;
+	  var date = document.getElementById('date').value;
+	  var lbs = getRadioValue('dude');
+		console.log(name);
+		console.log(reps);
+          var req = new XMLHttpRequest();
+          req.open('GET', 'http://52.32.23.188:3000/get?name=' + name + "&reps=" + reps + "&weight=" + weight +"&date=" + date + "&lbs=" + lbs , true);
+	  console.log("This is the loading responsetext: " + req.responseText);
+	  req.addEventListener('load',function(){
+
+          if(req.status >= 200 && req.status < 400){
+            console.log("yeh");
+          var response = JSON.parse(req.responseText);
+         // var response = req.responseText;
+
+		console.log(response);
+	  //  document.body.appendChild(add(response));
+	//	console.log(response[0]);
+		add(response);
+	//	console.log(response);
+          } else {
+            console.log("Error in network request: " + req.statusText);
+          }
+	  });
+
+          req.send(null);
+          event.preventDefault();
+	
+});
+}
+        
+    </script>
+</head>
+
 <h1>The Home Page</h1>
 
-	<body>
-		<form action="http://localhost:3050/get" method="get">
-			<input type="submit" value="Submit review" />
-		</form>
+<body><script>
+function del(tableID,currentRow, somenum){
+		console.log(somenum);
+                var req = new XMLHttpRequest();
+                req.open('GET', 'http://52.32.23.188:3000/delete?id=' + somenum,true);
+                console.log("This is the loading responsetext: " + req.responseText);
+                req.addEventListener('load',function(){
+
+                 if(req.status >= 200 && req.status < 400){
+                        console.log("yeh");
+                        var response = JSON.parse(req.responseText);
+                        console.log(response);
+                        deleteRow(tableID,currentRow);
+                } else {
+                  console.log("Error in network request: " + req.statusText);
+                }
+                });
+
+                 req.send(null);
+                 event.preventDefault();
+}
+
+function deleteRow(tableID,currentRow) {
+    try {
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            /*var chkbox = row.cells[0].childNodes[0];*/
+            /*if (null != chkbox && true == chkbox.checked)*/
+            
+            if (row==currentRow.parentNode.parentNode) {
+                if (rowCount <= 1) {
+                    break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
+            }
+        }
+    } catch (e) {
+        alert(e);
+    }
+    //getValues();
+}
+
+</script>
+<table id = "tables">
+                <tr>
+                        <th>Name</th>
+                        <th>REPS</th>
+                        <th>Weight</th>
+                        <th>Date</th>
+                        <th>Lbs</th>
+                </tr>
+{{#each results}}
+	<tr id = trey">
+		<td>{{this.name}} </td>
+		<td>{{this.reps}} </td>
+		<td>{{this.weight}} </td>
+		<td>{{this.date}} </td>
+		<td>{{this.lbs}}</td> 
+		<td> <input type="button" value="delete" id = "delete" onclick="del('tables',this,{{this.id}})" /> </td>
+		<td> <input type="button" value="edit" onclick="" /> </td>
+	</tr>
+{{/each}}
+</table>
+	<form method = "get">
+		<fieldset>
+		<legend>Add some 'unf' to your workout list</legend>
+ <br /><br />		
+		<label> name of exercise:
+			<input type="text" id="name">
+		</label>
+<br /><br />
+                <label> reps:
+                        <input type="number" id="reps">
+                </label>
+<br /><br />
+                <label> weight:
+                        <input type="number" id="weight">
+                </label>
+<br /><br />
+                <label> date:
+                        <input type="date" id="date">
+                </label>
+<br /><br />
+                <label> metric or emperial dude:  <br />
+                        <input type="radio" name="dude" id="lbs" value="1">lbs<br>
+                        <input type="radio" name="dude" id="kg" value="0">kg<br>
+                </label>
+		</fieldset>
+			<input type="submit" id="submit"" />
+	</form>
 	</body>
 
