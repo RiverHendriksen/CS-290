@@ -14,30 +14,6 @@ var context = {}
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-function buildTable(data) {
-  var node = document.createElement("table");
-  var tr = document.createElement("tr");
-  var headers = Object.keys(data[0]);
-  for (var i=0; i<headers.length; ++i) {
-    var header = headers[i];
-    var ch = document.createElement("th");
-    ch.appendChild(document.createTextNode(header));
-    tr.appendChild(ch);
-    }
-  node.appendChild(tr);
-  data.forEach(function (rowdata) {
-    tr = document.createElement("tr");
-    for (var i=0; i<headers.length; ++i) {
-      var header = headers[i];
-      var cd = document.createElement("td");
-      cd.appendChild(document.createTextNode(rowdata[header]));
-      tr.appendChild(cd);
-    }
-    node.appendChild(tr);
-  });
-  return node;
-}
-
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
@@ -72,6 +48,42 @@ app.get('/delete',function(req,res,next){
 });
 });
 
+
+app.get('/edit',function(req,res,next){
+  var context = {};
+  pool.query('SELECT * FROM workouts WHERE id =' + [req.query.id], function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    context.results = rows;
+    console.log(context.results);
+    res.render('edit', context);
+  });
+});
+
+app.get('/safe-update',function(req,res,next){
+  var context = {};
+  pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    if(result.length == 1){
+      var curVals = result[0];
+      pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=?  WHERE id=? ",
+        [req.query.name || curVals.name, req.query.reps || curVals.reps, req.query.weight || curVals.weight, req.query.date || curVals.date, req.query.lbs || curVals.lbs,  req.query.id],
+        function(err, result){
+        if(err){
+          next(err);
+          return;
+        }
+        context.results = "Updated " + result.changedRows + " rows.";
+        res.render('home',context);
+      });
+    }
+  });
+});
 
 app.get('/get',function(req,res,next){
 	console.log("get got");

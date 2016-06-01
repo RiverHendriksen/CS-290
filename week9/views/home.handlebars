@@ -1,6 +1,10 @@
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
-
 function getRadioValue(theRadioGroup)
 {
     var elements = document.getElementsByName(theRadioGroup);
@@ -32,7 +36,7 @@ function add(data) {
 	
     var btn = document.createElement('input');
     btn.type = "button";
-    btn.className = "btn";
+    btn.className = "delete";
     btn.value = "delete";
     btn.onclick =function(){del('tables', this, data[far].id)};
     cell6.appendChild(btn); 
@@ -41,7 +45,7 @@ function add(data) {
     edit.type = "button";
     edit.className = "edit";
     edit.value = "edit";
-    edit.onclick =function(){};
+    edit.onclick =function(){window.location.href = 'http://52.32.23.188:3000/edit?id='+data[far].id};
     cell7.appendChild(edit);  
 }
 
@@ -86,11 +90,10 @@ function add(data) {
         
     </script>
 </head>
+<body>
 
-<h1>The Home Page</h1>
-
-<body><script>
-function del(tableID,currentRow, somenum){
+<script>
+	function del(tableID,currentRow, somenum){
 		console.log(somenum);
                 var req = new XMLHttpRequest();
                 req.open('GET', 'http://52.32.23.188:3000/delete?id=' + somenum,true);
@@ -134,9 +137,13 @@ function deleteRow(tableID,currentRow) {
     }
     //getValues();
 }
-
 </script>
-<table id = "tables">
+
+<div class = "container">
+
+<h1>The Home Page</h1>
+
+<table id = "tables" class = "table">
                 <tr>
                         <th>Name</th>
                         <th>REPS</th>
@@ -145,17 +152,20 @@ function deleteRow(tableID,currentRow) {
                         <th>Lbs</th>
                 </tr>
 {{#each results}}
-	<tr id = trey">
-		<td>{{this.name}} </td>
+	<tr id = "trey" class = "danger">
+		<td id = {{this.id}}>{{this.name}} </td>
 		<td>{{this.reps}} </td>
 		<td>{{this.weight}} </td>
 		<td>{{this.date}} </td>
 		<td>{{this.lbs}}</td> 
 		<td> <input type="button" value="delete" id = "delete" onclick="del('tables',this,{{this.id}})" /> </td>
-		<td> <input type="button" value="edit" onclick="" /> </td>
+		<td><a href="/edit?id={{this.id}}"> <input type="button" value="edit" /></a> </td>
 	</tr>
 {{/each}}
 </table>
+</div>
+
+<div class = "container">
 	<form method = "get">
 		<fieldset>
 		<legend>Add some 'unf' to your workout list</legend>
@@ -177,11 +187,13 @@ function deleteRow(tableID,currentRow) {
                 </label>
 <br /><br />
                 <label> metric or emperial dude:  <br />
-                        <input type="radio" name="dude" id="lbs" value="1">lbs<br>
-                        <input type="radio" name="dude" id="kg" value="0">kg<br>
+                        <input type="radio" name="dude" id="lbs" value="1"> lbs<br>
+                        <input type="radio" name="dude" id="kg" value="0"> kg<br>
                 </label>
 		</fieldset>
-			<input type="submit" id="submit"" />
+<br /><br />
+			<input type="submit" id="submit" />
+</div>
 	</form>
 	</body>
 

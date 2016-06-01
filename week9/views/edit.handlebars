@@ -1,0 +1,110 @@
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+function getRadioValue(theRadioGroup)
+{
+    var elements = document.getElementsByName(theRadioGroup);
+    for (var i = 0, l = elements.length; i < l; i++)
+    {
+        if (elements[i].checked)
+        {
+            return elements[i].value;
+        }
+    }
+}
+
+    document.addEventListener('DOMContentLoaded', bindButtons);
+
+      function bindButtons(){
+        document.getElementById('submit').addEventListener('click', function(event){
+
+          console.log("dawg");
+	  var newid = document.getElementById("newid").innerHTML;
+	  console.log(newid);
+          var name = document.getElementById('name').value;
+          var reps = document.getElementById('reps').value;
+          var weight = document.getElementById('weight').value;
+          var date = document.getElementById('date').value;
+          var lbs = getRadioValue('dude');
+                console.log(name);
+                console.log(reps);
+          var req = new XMLHttpRequest();
+          req.open('GET', 'http://52.32.23.188:3000/safe-update?id=' + newid + '&name=' + name + "&reps=" + reps + "&weight=" + weight +"&date=" + date + "&lbs=" + lbs , true);
+          console.log("This is the loading responsetext: " + req.responseText);
+          req.addEventListener('load',function(){
+
+          if(req.status >= 200 && req.status < 400){
+            console.log("yeh");
+	    window.location.href = 'http://52.32.23.188:3000';return false;
+          } else {
+            console.log("Error in network request: " + req.statusText);
+          }
+          });
+
+          req.send(null);
+          event.preventDefault();
+
+});
+}
+</script>
+</head> 
+<body>
+<div class = "container">
+<h1> Just you and the edit here buddy</h1>
+
+<table id = "tables"  class="table">
+                <tr>
+                        <th>Name</th>
+                        <th>REPS</th>
+                        <th>Weight</th>
+                        <th>Date</th>
+                        <th>Lbs</th>
+                </tr>
+{{#each results}}
+        <tr id = trey">
+                <td id = {{this.id}}>{{this.name}} </td>
+                <td>{{this.reps}} </td>
+                <td>{{this.weight}} </td>
+                <td>{{this.date}} </td>
+                <td>{{this.lbs}}</td>
+		<td style="display:none;"  value={{this.id}} id="newid">{{this.id}}</td>
+        </tr>
+{{/each}}
+</table>
+</div>
+
+<div class="container">
+<form class  method = "get">
+                <fieldset>
+                <legend>Add some 'edit' to your workout list</legend>
+ <br /><br />
+                <label> name of exercise:
+                        <input type="text" id="name">
+                </label>
+<br /><br />
+                <label> reps:
+                        <input type="number" id="reps">
+                </label>
+<br /><br />
+                <label> weight:
+                        <input type="number" id="weight">
+                </label>
+<br /><br />
+                <label> date:
+                        <input type="date" id="date">
+                </label>
+<br /><br />
+                <label> metric or emperial dude:  <br />
+                        <input type="radio" name="dude" id="lbs" value="1"> lbs<br>
+                        <input type="radio" name="dude" id="kg" value="0"> kg<br>
+                </label>
+                </fieldset>
+<br /><br />
+                      <input type="submit" id="submit" />
+        </form>
+</div>
+</body>
