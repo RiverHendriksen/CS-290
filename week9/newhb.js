@@ -31,6 +31,16 @@ app.get('/',function(req,res,next){
   });
 });
 
+app.get('/refresh',function(req,res,next){
+  pool.query('SELECT * FROM workouts', function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+   res.send(JSON.stringify(rows));
+  });
+});
+
 app.get('/delete',function(req,res,next){
   var context = {};
   pool.query('DELETE FROM workouts WHERE id =' + [req.query.id], function(err, rows, fields){

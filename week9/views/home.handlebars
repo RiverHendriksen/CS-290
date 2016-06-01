@@ -17,6 +17,23 @@ function getRadioValue(theRadioGroup)
     }
 }
 
+function getnew(){
+var req = new XMLHttpRequest();
+req.open('GET', 'http://52.32.23.188:3000/refresh' , true);
+req.addEventListener('load',function(){
+    if(req.status >= 200 && req.status < 400){
+        console.log("yeh");
+        var response = JSON.parse(req.responseText);
+	console.log(response);
+	add(response);
+    } else {
+       console.log("Error in network request: " + req.statusText);
+     }
+     });
+          req.send(null);
+          event.preventDefault();
+}
+
 function add(data) {
     var far = data.length-1;
     var table = document.getElementById("tables");
@@ -69,20 +86,21 @@ function add(data) {
 
           if(req.status >= 200 && req.status < 400){
             console.log("yeh");
-          var response = JSON.parse(req.responseText);
+         // var response = JSON.parse(req.responseText);
          // var response = req.responseText;
-
-		console.log(response);
+		getnew();
+	//	console.log(response);
 	  //  document.body.appendChild(add(response));
 	//	console.log(response[0]);
-		add(response);
+	//	add(response);
 	//	console.log(response);
+	//	response = "";
           } else {
             console.log("Error in network request: " + req.statusText);
           }
 	  });
-
           req.send(null);
+	 
           event.preventDefault();
 	
 });
